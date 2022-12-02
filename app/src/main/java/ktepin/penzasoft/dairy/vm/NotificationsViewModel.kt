@@ -1,4 +1,4 @@
-package ktepin.penzasoft.dairy.ui.notifications
+package ktepin.penzasoft.dairy.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="ktepin.penzasoft.dairy.ui.home.HomeFragment"
+        android:name="ktepin.penzasoft.dairy.view.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="ktepin.penzasoft.dairy.ui.dashboard.DashboardFragment"
+        android:name="ktepin.penzasoft.dairy.view.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="ktepin.penzasoft.dairy.ui.notifications.NotificationsFragment"
+        android:name="ktepin.penzasoft.dairy.view.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

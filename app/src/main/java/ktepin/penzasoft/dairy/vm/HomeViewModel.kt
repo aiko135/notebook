@@ -1,4 +1,4 @@
-package ktepin.penzasoft.dairy.ui.home
+package ktepin.penzasoft.dairy.vm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

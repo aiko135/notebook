@@ -9,6 +9,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import ktepin.penzasoft.dairy.databinding.ActivityMainBinding
 
+
+//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
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
