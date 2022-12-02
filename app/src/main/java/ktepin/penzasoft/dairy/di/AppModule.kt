@@ -6,6 +6,8 @@ import ktepin.penzasoft.dairy.vm.HomeViewModel
 import ktepin.penzasoft.dairy.vm.NotificationsViewModel
 import ktepin.penzasoft.dairy.vm.DashboardViewModel
 import ktepin.penzasoft.dairy.vm.CreateRecordViewModel
+import ktepin.penzasoft.dairy.util.PermissionManager
+import org.koin.core.module.dsl.singleOf
 
 val appModule = module {
     //vm
@@ -13,4 +15,6 @@ val appModule = module {
     viewModelOf(::NotificationsViewModel)
     viewModelOf(::DashboardViewModel)
     viewModelOf(::CreateRecordViewModel)
+
+    singleOf(::PermissionManager)
 }

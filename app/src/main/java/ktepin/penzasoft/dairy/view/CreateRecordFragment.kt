@@ -29,10 +29,9 @@ class CreateRecordFragment : Fragment() {
         _binding = FragmentCreateRecordBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        createRecordViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        binding.addPhoto.setOnClickListener{
+
+        }
         return root
     }
 
