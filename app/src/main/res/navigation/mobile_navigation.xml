@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="ktepin.penzasoft.dairy.view.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_create"
+            app:destination="@id/navigation_create" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +26,11 @@
         android:name="ktepin.penzasoft.dairy.view.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_create"
+        android:name="ktepin.penzasoft.dairy.view.CreateRecordFragment"
+        android:label="@string/create_record"
+        tools:layout="@layout/fragment_create_record" />
+
 </navigation>

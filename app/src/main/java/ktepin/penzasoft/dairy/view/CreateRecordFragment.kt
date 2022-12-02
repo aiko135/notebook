@@ -7,17 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import ktepin.penzasoft.dairy.R
-import ktepin.penzasoft.dairy.databinding.FragmentHomeBinding
-import ktepin.penzasoft.dairy.vm.HomeViewModel
+import ktepin.penzasoft.dairy.databinding.FragmentCreateRecordBinding
+import ktepin.penzasoft.dairy.vm.CreateRecordViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+class CreateRecordFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by viewModel()
-    private var _binding: FragmentHomeBinding? = null
+    private val createRecordViewModel: CreateRecordViewModel by viewModel()
+    private var _binding: FragmentCreateRecordBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,18 +25,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        _binding = FragmentCreateRecordBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textDashboard
+        createRecordViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-
-        binding.floatingActionButton.setOnClickListener {
-            this.findNavController().navigate(R.id.action_navigation_home_to_navigation_create)
-        }
-
         return root
     }
 
@@ -47,4 +40,5 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
