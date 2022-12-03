@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import ktepin.penzasoft.dairy.R
 import ktepin.penzasoft.dairy.databinding.FragmentNotificationsBinding
 import ktepin.penzasoft.dairy.vm.NotificationsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,6 +36,11 @@ class NotificationsFragment : Fragment() {
         notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        binding.floatingActionButton.setOnClickListener{
+            this.findNavController().navigate(R.id.action_navigation_notifications_to_navigation_create_notification)
+        }
+
         return root
     }
 
