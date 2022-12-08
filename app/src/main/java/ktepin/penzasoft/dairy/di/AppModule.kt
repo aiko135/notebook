@@ -8,6 +8,7 @@ import ktepin.penzasoft.dairy.vm.DashboardViewModel
 import ktepin.penzasoft.dairy.vm.CreateRecordViewModel
 import ktepin.penzasoft.dairy.vm.CreateNotificationViewModel
 import ktepin.penzasoft.dairy.util.PermissionManager
+import ktepin.penzasoft.dairy.util.CameraManager
 import org.koin.core.module.dsl.singleOf
 
 val appModule = module {
@@ -19,4 +20,5 @@ val appModule = module {
     viewModelOf(::CreateNotificationViewModel)
 
     singleOf(::PermissionManager)
+    singleOf(::CameraManager)
 }

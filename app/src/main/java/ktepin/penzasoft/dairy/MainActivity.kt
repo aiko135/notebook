@@ -14,7 +14,6 @@ import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
 
-//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
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
