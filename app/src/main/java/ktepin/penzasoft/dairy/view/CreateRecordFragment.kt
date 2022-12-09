@@ -100,6 +100,7 @@ class CreateRecordFragment : Fragment() {
         })
 
         binding.saveButton.setOnClickListener {
+            binding.saveButton.isEnabled = false
             viewModel.persist()
         }
 
