@@ -12,8 +12,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /*
-* Заметка. Чтобы камера могла сохранить фото в getExternalFilesDir текущего приложения
-* используется FileProvider (подкласс ContentProvider'а)
+* Заметка.
+* Чтобы камера могла сохранить фото в getExternalFilesDir текущего приложения
+* используется FileProvider (подкласс ContentProvider'а), его нотация AndroidManifest
 * FileProvider.getUriForFile(..) используется для создания Uri по которому камера сможет передать картинку во external storage приложения
 * */
 class CameraManager(
