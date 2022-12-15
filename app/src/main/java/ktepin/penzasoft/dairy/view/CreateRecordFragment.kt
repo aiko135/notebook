@@ -81,8 +81,6 @@ class CreateRecordFragment : Fragment() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun afterTextChanged(s: Editable) {
-//                val t1 =  binding.textField.editText?.text.toString();
-//                val t2 = binding.decrField.editText?.text.toString();
                 viewModel.update(
                     binding.textField.editText?.text.toString(),
                     binding.decrField.editText?.text.toString()

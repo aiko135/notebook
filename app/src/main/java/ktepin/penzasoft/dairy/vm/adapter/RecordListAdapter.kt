@@ -36,4 +36,10 @@ class RecordListAdapter : RecyclerView.Adapter<RecordListAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return records.size
     }
+
+
+    fun setRecords(newRecords:List<Record>){
+        records = newRecords
+        notifyDataSetChanged()
+    }
 }
