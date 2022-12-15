@@ -51,6 +51,7 @@ class HomeFragment : Fragment() {
             this.findNavController().navigate(R.id.action_navigation_home_to_navigation_create)
         }
 
+
         return root
     }
 
