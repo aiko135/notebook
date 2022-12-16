@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ktepin.penzasoft.dairy.R
 import ktepin.penzasoft.dairy.databinding.FragmentHomeBinding
 import ktepin.penzasoft.dairy.vm.HomeViewModel
-import ktepin.penzasoft.dairy.vm.adapter.RecordListAdapter
+import ktepin.penzasoft.dairy.view.adapter.RecordListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {

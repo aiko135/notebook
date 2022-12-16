@@ -1,4 +1,4 @@
-package ktepin.penzasoft.dairy.vm.adapter
+package ktepin.penzasoft.dairy.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ktepin.penzasoft.dairy.R
-import ktepin.penzasoft.dairy.model.Record
+import ktepin.penzasoft.dairy.model.record.Record
 
 class RecordListAdapter : RecyclerView.Adapter<RecordListAdapter.ViewHolder>() {
     private var records: List<Record> = ArrayList()
@@ -25,7 +25,7 @@ class RecordListAdapter : RecyclerView.Adapter<RecordListAdapter.ViewHolder>() {
         view.setOnClickListener{
             //Нажатие на элемент списка
         }
-        return RecordListAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

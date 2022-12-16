@@ -1,7 +1,8 @@
-package ktepin.penzasoft.dairy.model
+package ktepin.penzasoft.dairy.model.record
 
 import java.util.Date
 
+//Сохраняется в БД
 data class Record (
     var title : String,
     var description : String,
@@ -9,7 +10,7 @@ data class Record (
     var timestamp:Date
 ){
     companion object {
-        fun default():Record{
+        fun default(): Record {
             return Record("","","", Date())
         }
     }

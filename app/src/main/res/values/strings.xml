@@ -9,4 +9,7 @@
     <string name="add_photo">Attach photo</string>
     <string name="open_camera">Open camera</string>
     <string name="save">Save</string>
+    <string name="no_notifications">You haven\'t setup notification</string>
+    <string name="clear_notification">Clear notification</string>
+    <string name="register_notification">Register notification</string>
 </resources>

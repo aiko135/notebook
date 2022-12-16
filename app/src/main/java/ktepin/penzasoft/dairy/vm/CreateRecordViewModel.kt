@@ -6,12 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ktepin.penzasoft.dairy.model.Record
-import ktepin.penzasoft.dairy.model.RecordEntity
-import ktepin.penzasoft.dairy.model.RecordRepository
-import ktepin.penzasoft.dairy.util.SingleLiveEvent
+import ktepin.penzasoft.dairy.model.record.Record
+import ktepin.penzasoft.dairy.model.record.RecordEntity
+import ktepin.penzasoft.dairy.model.record.RecordRepository
 import org.koin.java.KoinJavaComponent.inject
-import java.util.*
 
 class CreateRecordViewModel : ViewModel() {
     private val recordRepository: RecordRepository by inject(RecordRepository::class.java)

@@ -1,8 +1,8 @@
-package ktepin.penzasoft.dairy.model
+package ktepin.penzasoft.dairy.model.record
 
 class RecordRepository(private val recordDao: RecordDao) {
 
-    suspend fun insert(r:RecordEntity){
+    suspend fun insert(r: RecordEntity){
         recordDao.insert(r)
     }
 

@@ -1,4 +1,4 @@
-package ktepin.penzasoft.dairy.model
+package ktepin.penzasoft.dairy.model.record
 
 import androidx.room.Dao
 import androidx.room.Insert

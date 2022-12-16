@@ -1,23 +1,28 @@
 package ktepin.penzasoft.dairy.view
 
 import android.os.Bundle
+import android.text.format.DateFormat.is24HourFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import ktepin.penzasoft.dairy.R
 import ktepin.penzasoft.dairy.databinding.FragmentNotificationsBinding
+import ktepin.penzasoft.dairy.model.notification.Notification
+import ktepin.penzasoft.dairy.util.Util
 import ktepin.penzasoft.dairy.vm.NotificationsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NotificationsFragment : Fragment() {
 
-    private val notificationsViewModel: NotificationsViewModel by viewModel()
+    private val viewModel: NotificationsViewModel by viewModel()
     private var _binding: FragmentNotificationsBinding? = null
 
     // This property is only valid between onCreateView and
@@ -32,16 +37,46 @@ class NotificationsFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        viewModel.notification.observe(viewLifecycleOwner, Observer {
+            if (it == null){
+                binding.notificationText.text = getString(R.string.no_notifications);
+            }
+            else{
+                binding.notificationText.text = "[${Util.intToTimeStr(it.hour)}:${Util.intToTimeStr(it.min)}] ${it.title}"
+            }
+
         })
 
-        binding.floatingActionButton.setOnClickListener{
-            this.findNavController().navigate(R.id.action_navigation_notifications_to_navigation_create_notification)
-        }
+        binding.addNotification.setOnClickListener{onClickCreate()}
+        binding.clearNotification.setOnClickListener{viewModel.clearNotification()}
 
+        viewModel.getNotification()
         return root
+    }
+
+    private fun onClickCreate(){
+        val text : String = binding.textField.editText?.text.toString()
+        if (text != ""){
+            val isSystem24Hour = is24HourFormat(activity)
+            val clockFormat = if (isSystem24Hour) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
+            val picker =
+                MaterialTimePicker.Builder()
+                    .setTimeFormat(clockFormat)
+                    .setHour(12)
+                    .setMinute(10)
+                    .build()
+            picker.show(parentFragmentManager, "tag");
+            picker.addOnPositiveButtonClickListener {
+                val notification = Notification(
+                    text,
+                    isSystem24Hour,
+                    picker.hour,
+                    picker.minute
+                )
+                viewModel.addNotification(notification)
+                // call back code
+            }
+        }
     }
 
     override fun onDestroyView() {

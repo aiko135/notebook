@@ -1,10 +1,10 @@
 package ktepin.penzasoft.dairy
 
 import androidx.room.Room
-import ktepin.penzasoft.dairy.Config
 import ktepin.penzasoft.dairy.model.AppDatabase
-import ktepin.penzasoft.dairy.model.RecordDao
-import ktepin.penzasoft.dairy.model.RecordRepository
+import ktepin.penzasoft.dairy.model.notification.NotificationRepository
+import ktepin.penzasoft.dairy.model.record.RecordDao
+import ktepin.penzasoft.dairy.model.record.RecordRepository
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 
@@ -12,7 +12,6 @@ import ktepin.penzasoft.dairy.vm.HomeViewModel
 import ktepin.penzasoft.dairy.vm.NotificationsViewModel
 import ktepin.penzasoft.dairy.vm.DashboardViewModel
 import ktepin.penzasoft.dairy.vm.CreateRecordViewModel
-import ktepin.penzasoft.dairy.vm.CreateNotificationViewModel
 import ktepin.penzasoft.dairy.util.PermissionManager
 import ktepin.penzasoft.dairy.util.CameraManager
 import org.koin.android.ext.koin.androidApplication
@@ -24,7 +23,6 @@ val appModule = module {
     viewModelOf(::NotificationsViewModel)
     viewModelOf(::DashboardViewModel)
     viewModelOf(::CreateRecordViewModel)
-    viewModelOf(::CreateNotificationViewModel)
 
     singleOf(::PermissionManager)
     singleOf(::CameraManager)
@@ -50,4 +48,6 @@ val appModule = module {
         val dao = get<RecordDao>()
         RecordRepository(dao)
     }
+
+    single<NotificationRepository> { NotificationRepository(androidApplication()) }
 }
