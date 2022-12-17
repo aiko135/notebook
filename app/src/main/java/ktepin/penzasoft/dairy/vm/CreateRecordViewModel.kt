@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ktepin.penzasoft.dairy.model.record.LatLng
 import ktepin.penzasoft.dairy.model.record.Record
 import ktepin.penzasoft.dairy.model.record.RecordEntity
 import ktepin.penzasoft.dairy.model.record.RecordRepository
 import org.koin.java.KoinJavaComponent.inject
+import kotlin.math.ln
 
 class CreateRecordViewModel : ViewModel() {
     private val recordRepository: RecordRepository by inject(RecordRepository::class.java)
@@ -27,6 +29,14 @@ class CreateRecordViewModel : ViewModel() {
         }
     }
 
+    fun setGeoTag(lat:Float, lng:Float){
+        var value = _record.value
+        if (value != null) {
+            value.geotag = LatLng(lat, lng)
+            _record.postValue(value)
+        }
+    }
+
     fun update(title: String, descr: String) {
         var value = _record.value
         if (value != null) {
@@ -40,7 +50,7 @@ class CreateRecordViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             _record.value?.let {
                 val newRec : Record = _record.value!!
-                if(newRec.title != "" && newRec.description != "")
+                if(newRec.title != "")
                     recordRepository.insert(RecordEntity.fromRecord(it))
             }
 

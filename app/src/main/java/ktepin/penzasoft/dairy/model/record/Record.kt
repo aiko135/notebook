@@ -7,11 +7,12 @@ data class Record (
     var title : String,
     var description : String,
     var img : String,
-    var timestamp:Date
+    var timestamp:Date,
+    var geotag:LatLng?
 ){
     companion object {
         fun default(): Record {
-            return Record("","","", Date())
+            return Record("","","", Date(), null)
         }
     }
 }

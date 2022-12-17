@@ -1,21 +1,31 @@
 package ktepin.penzasoft.dairy.view
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.ImageDecoder
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import ktepin.penzasoft.dairy.R
 import ktepin.penzasoft.dairy.databinding.FragmentCreateRecordBinding
+import ktepin.penzasoft.dairy.model.record.LatLng
 import ktepin.penzasoft.dairy.util.CameraManager
 import ktepin.penzasoft.dairy.vm.CreateRecordViewModel
 import org.koin.android.ext.android.inject
@@ -75,6 +85,8 @@ class CreateRecordFragment : Fragment() {
             }
         }
 
+        binding.addGeotag.setOnClickListener{ getLocation() }
+
         val textWatcher = object : TextWatcher {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
 
@@ -92,17 +104,54 @@ class CreateRecordFragment : Fragment() {
         binding.decrField.editText?.addTextChangedListener(textWatcher)
 
         viewModel.record.observe(viewLifecycleOwner, Observer {
-            if(it.img != ""){
+            if(it.img != "")
                 applyImage(it.img)
-            }
+            if (it.geotag != null)
+                applyGeoTag(it.geotag!!)
         })
 
         binding.saveButton.setOnClickListener {
             binding.saveButton.isEnabled = false
-            viewModel.persist()
+            if( binding.textField.editText?.text.toString() != ""){
+                viewModel.persist()
+                this.findNavController().navigate(R.id.action_navigation_create_to_navigation_home)
+            }
+
         }
 
         return root
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLocation(){
+        try {
+            val lm = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val hasGps = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
+            if(hasGps){
+                val gpsLocationListener: LocationListener = object : LocationListener {
+                    override fun onLocationChanged(location: Location) {
+                        viewModel.setGeoTag(location.latitude.toFloat(),location.longitude.toFloat())
+                    }
+
+                    override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
+                    override fun onProviderEnabled(provider: String) {}
+                    override fun onProviderDisabled(provider: String) {}
+                }
+                lm.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    5000,
+                    0F,
+                    gpsLocationListener
+                )
+            }
+            else{
+                Toast.makeText(requireActivity(), "Cannot get your location", Toast.LENGTH_LONG).show()
+            }
+        }
+        catch (e: Exception){
+            Toast.makeText(requireActivity(), "Cannot get your location", Toast.LENGTH_LONG).show()
+        }
+
     }
 
     private fun applyImage(uri:String){
@@ -125,6 +174,10 @@ class CreateRecordFragment : Fragment() {
         }
     }
 
+    private fun applyGeoTag(latLng: LatLng){
+        binding.geotagText.text = "[${latLng.lat}, ${latLng.lng}]"
+    }
+
     override fun onResume() {
         val vmRecord = viewModel.record.value;
         if (vmRecord != null) {
@@ -134,6 +187,8 @@ class CreateRecordFragment : Fragment() {
                 binding.decrField.editText?.setText(vmRecord.description)
             if(vmRecord.img != "")
                 applyImage(vmRecord.img)
+            if(vmRecord.geotag != null)
+                applyGeoTag(vmRecord.geotag!!)
         }
 
         super.onResume()

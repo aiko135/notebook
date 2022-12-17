@@ -13,4 +13,6 @@
     <string name="clear_notification">Clear notification</string>
     <string name="register_notification">Register notification</string>
     <string name="notification_header">Dairy notification!</string>
+    <string name="add_geotag">Add geotag</string>
+    <string name="no_geotag">No geotag</string>
 </resources>

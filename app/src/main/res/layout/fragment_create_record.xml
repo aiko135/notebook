@@ -46,12 +46,31 @@
                     android:layout_height="match_parent" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/geotag_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_geotag"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/decrField" />
+
+            <Button
+                android:id="@+id/addGeotag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_geotag"
+                app:layout_constraintTop_toBottomOf="@+id/geotag_text"
+                style="?attr/materialButtonOutlinedStyle"
+                />
+
             <Button
                 android:id="@+id/addPhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_photo"
-                app:layout_constraintTop_toBottomOf="@+id/decrField"
+                app:layout_constraintTop_toBottomOf="@+id/addGeotag"
                 style="?attr/materialButtonOutlinedStyle"
                 />
 
