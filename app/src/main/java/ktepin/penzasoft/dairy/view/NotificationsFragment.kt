@@ -67,6 +67,7 @@ class NotificationsFragment : Fragment() {
                     .build()
             picker.show(parentFragmentManager, "tag");
             picker.addOnPositiveButtonClickListener {
+                binding.textField.editText?.setText("")
                 val notification = Notification(
                     text,
                     isSystem24Hour,

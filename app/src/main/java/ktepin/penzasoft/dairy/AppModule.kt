@@ -2,6 +2,7 @@ package ktepin.penzasoft.dairy
 
 import androidx.room.Room
 import ktepin.penzasoft.dairy.model.AppDatabase
+import ktepin.penzasoft.dairy.model.Config
 import ktepin.penzasoft.dairy.model.notification.NotificationRepository
 import ktepin.penzasoft.dairy.model.record.RecordDao
 import ktepin.penzasoft.dairy.model.record.RecordRepository
