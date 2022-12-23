@@ -1,4 +1,4 @@
-# dairy
+# TEST PROJECT
 
 MVVM архитектура
 Koin DI
