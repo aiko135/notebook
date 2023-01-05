@@ -74,7 +74,7 @@ class CreateRecordFragment : Fragment() {
         binding.addPhoto.setOnClickListener {
             val intent = Intent()
             intent.type = "image/*"
-            intent.action = Intent.ACTION_GET_CONTENT
+            intent.action = Intent.ACTION_GET_CONTENT //TODO use ACTION_OPEN_CONTENT чтобы поулчить постоянный URI, этот URI временный
             selectImageLauncher.launch(intent)
         }
 
