@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="ktepin.penzasoft.dairy.view.HomeFragment"
+        android:name="ktepin.penzasoft.note.view.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -17,20 +17,20 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="ktepin.penzasoft.dairy.view.DashboardFragment"
+        android:name="ktepin.penzasoft.note.view.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="ktepin.penzasoft.dairy.view.NotificationsFragment"
+        android:name="ktepin.penzasoft.note.view.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" >
     </fragment>
 
     <fragment
         android:id="@+id/navigation_create"
-        android:name="ktepin.penzasoft.dairy.view.CreateRecordFragment"
+        android:name="ktepin.penzasoft.note.view.CreateRecordFragment"
         android:label="@string/create_record"
         tools:layout="@layout/fragment_create_record" >
         <action
