@@ -25,10 +25,9 @@ class AlarmBroadcastReceiver : BroadcastReceiver() {
 
     override fun onReceive(ctx: Context?, intent: Intent?) {
         Log.i("AlarmBroadcastReceiver", "Recived")
-
-        if(ctx != null){
+        ctx?.let { ctx ->
             val notification = notificationRepository.getNotification()
-            if(notification != null){
+            notification?.let{ notification ->
                 val calendar = Calendar.getInstance()
                 var hourFormat = SimpleDateFormat("hh")
                 if(notification.is24hour)
@@ -60,9 +59,7 @@ class AlarmBroadcastReceiver : BroadcastReceiver() {
                 NotificationManager.IMPORTANCE_DEFAULT
             )
             channel.description = "Custom notification"
-            if (mNotificationManager != null) {
-                mNotificationManager.createNotificationChannel(channel)
-            }
+            mNotificationManager?.createNotificationChannel(channel)
         }
 
         val builder = NotificationCompat.Builder(ctx, CHANNEL_ID)

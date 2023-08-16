@@ -19,12 +19,11 @@ class PermissionManager(
     )
 
     fun arePermissionsGranted(): Boolean {
-        var res = true;
         RUNTIME_PERMISSIONS.forEach{
             if (ContextCompat.checkSelfPermission(activity, it) != PackageManager.PERMISSION_GRANTED)
-                res = false;
+                return false
         }
-        return res
+        return true
     }
 
     fun requestPermissions() {

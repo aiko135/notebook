@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         //Recycler view
         recordRecyclerViewAdapter = RecordListAdapter()
@@ -56,7 +55,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        return root
+        return binding.root
     }
 
     override fun onResume() {

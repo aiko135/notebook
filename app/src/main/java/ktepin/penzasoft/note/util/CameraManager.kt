@@ -48,7 +48,6 @@ class CameraManager(
     fun saveToGallery():Uri?{
         var res:Uri? = null
         file?.let {
-
             res = Uri.fromFile(file)
             val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
             mediaScanIntent.data = res

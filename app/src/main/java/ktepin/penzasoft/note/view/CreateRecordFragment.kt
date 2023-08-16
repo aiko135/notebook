@@ -102,12 +102,12 @@ class CreateRecordFragment : Fragment() {
         binding.textField.editText?.addTextChangedListener(textWatcher)
         binding.decrField.editText?.addTextChangedListener(textWatcher)
 
-        viewModel.record.observe(viewLifecycleOwner, Observer {
-            if(it.img != "")
+        viewModel.record.observe(viewLifecycleOwner) {
+            if (it.img != "")
                 applyImage(it.img)
             if (it.geotag != null)
                 applyGeoTag(it.geotag!!)
-        })
+        }
 
         binding.saveButton.setOnClickListener {
             binding.saveButton.isEnabled = false

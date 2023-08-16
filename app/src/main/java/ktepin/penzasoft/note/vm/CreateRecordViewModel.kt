@@ -21,35 +21,31 @@ class CreateRecordViewModel : ViewModel() {
     val record: LiveData<Record> = _record
 
     fun setUri(uri: String) {
-        var value = _record.value
-        if (value != null) {
-            value.img = uri
-            _record.postValue(value)
+        _record.value?.let {
+            it.img = uri
+            _record.postValue(it)
         }
     }
 
     fun setGeoTag(lat:Float, lng:Float){
-        var value = _record.value
-        if (value != null) {
-            value.geotag = LatLng(lat, lng)
-            _record.postValue(value)
+        _record.value?.let {
+            it.geotag = LatLng(lat, lng)
+            _record.postValue(it)
         }
     }
 
     fun update(title: String, descr: String) {
-        var value = _record.value
-        if (value != null) {
-            value.title = title
-            value.description = descr
-            _record.postValue(value)
+        _record.value?.let {
+            it.title = title
+            it.description = descr
+            _record.postValue(it)
         }
     }
 
     fun persist() {
         viewModelScope.launch(Dispatchers.IO) {
             _record.value?.let {
-                val newRec : Record = _record.value!!
-                if(newRec.title != "")
+                if(it.title != "")
                     recordRepository.insert(RecordEntity.fromRecord(it))
             }
 

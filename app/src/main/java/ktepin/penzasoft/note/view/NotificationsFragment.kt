@@ -33,15 +33,14 @@ class NotificationsFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        viewModel.notification.observe(viewLifecycleOwner, Observer {
-            if (it == null){
+        viewModel.notification.observe(viewLifecycleOwner) {
+            if (it == null) {
                 binding.notificationText.text = getString(R.string.no_notifications);
+            } else {
+                binding.notificationText.text =
+                    "[${Util.intToTimeStr(it.hour)}:${Util.intToTimeStr(it.min)}] ${it.title}"
             }
-            else{
-                binding.notificationText.text = "[${Util.intToTimeStr(it.hour)}:${Util.intToTimeStr(it.min)}] ${it.title}"
-            }
-
-        })
+        }
 
         binding.addNotification.setOnClickListener{onClickCreate()}
         binding.clearNotification.setOnClickListener{viewModel.clearNotification()}

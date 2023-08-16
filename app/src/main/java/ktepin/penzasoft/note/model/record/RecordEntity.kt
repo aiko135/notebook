@@ -17,8 +17,8 @@ data class RecordEntity(
 ) {
     companion object {
         fun fromRecord(r: Record): RecordEntity {
-            val lat: Float = if (r.geotag != null) r.geotag!!.lat else (-1.0).toFloat();
-            val lng: Float = if (r.geotag != null) r.geotag!!.lng else (-1.0).toFloat();
+            val lat: Float = r.geotag?.lat ?: (-1.0).toFloat()
+            val lng: Float = r.geotag?.lng ?: (-1.0).toFloat()
             return RecordEntity(0, r.title, r.description, r.img, r.timestamp.toString(), lat, lng)
         }
 
